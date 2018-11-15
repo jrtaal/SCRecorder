@@ -417,6 +417,11 @@
 - (UIImage *__nullable)snapshotOfLastVideoBuffer;
 
 /**
+ Reconfigures the inputs and resumes recording when done and resume is true
+ */
+-(void)reconfigureAndResume:(BOOL)resume;
+
+/**
  Returns a shared recorder if you want to use the same instance throughout your app.
  */
 + (SCRecorder *__nonnull)sharedRecorder;
