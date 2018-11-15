@@ -317,7 +317,9 @@ static char* SCRecorderPhotoOptionsContext = "PhotoOptionsContext";
     [self reconfigureVideoInput:YES audioInput:YES];
     
     [self commitConfiguration];
-    
+    if ([_delegate respondsToSelector:@selector(recorder:didCconfigureCaptureSession:)]) {
+        [self.delegate recorder:self didCconfigureCaptureSession:_error];
+    }
     return success;
 }
 

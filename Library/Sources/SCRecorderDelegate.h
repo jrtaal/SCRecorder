@@ -26,6 +26,12 @@ typedef NS_ENUM(NSInteger, SCFlashMode) {
 /**
  Called when the recorder has reconfigured the videoInput
  */
+- (void)recorder:(SCRecorder *__nonnull)recorder didCconfigureCaptureSession:(NSError *__nullable)videoInputError;
+
+
+/**
+ Called when the recorder has reconfigured the videoInput
+ */
 - (void)recorder:(SCRecorder *__nonnull)recorder didReconfigureVideoInput:(NSError *__nullable)videoInputError;
 
 /**

@@ -102,6 +102,11 @@
     }
 }
 
+-(void)recorder:(SCRecorder *)recorder didCconfigureCaptureSession:(NSError *)videoInputError {
+       [_recorder startRunning];
+    NSLog(@"Configured Session");
+}
+
 - (void)recorder:(SCRecorder *)recorder didSkipVideoSampleBufferInSession:(SCRecordSession *)recordSession {
     NSLog(@"Skipped video buffer");
 }
@@ -131,7 +136,7 @@
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
     
-    [_recorder startRunning];
+ 
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
