@@ -117,14 +117,16 @@ static char* SCRecorderPhotoOptionsContext = "PhotoOptionsContext";
 }
 
 - (void)applicationDidBecomeActive:(id)sender {
-    if (_beginSessionConfigurationCount == 0) {
-        [self reconfigureVideoInput:self.videoConfiguration.enabled audioInput:self.audioConfiguration.enabled];
-    
-        if (_shouldAutoresumeRecording) {
-            _shouldAutoresumeRecording = NO;
-            [self record];
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
+        if (_beginSessionConfigurationCount == 0) {
+            [self reconfigureVideoInput:self.videoConfiguration.enabled audioInput:self.audioConfiguration.enabled];
+            
+            if (_shouldAutoresumeRecording) {
+                _shouldAutoresumeRecording = NO;
+                [self record];
+            }
         }
-    }
+    });
 }
 
 - (void)deviceOrientationChanged:(id)sender {
