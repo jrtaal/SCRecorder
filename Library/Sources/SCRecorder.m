@@ -117,11 +117,13 @@ static char* SCRecorderPhotoOptionsContext = "PhotoOptionsContext";
 }
 
 - (void)applicationDidBecomeActive:(id)sender {
-    [self reconfigureVideoInput:self.videoConfiguration.enabled audioInput:self.audioConfiguration.enabled];
+    if (_beginSessionConfigurationCount == 0) {
+        [self reconfigureVideoInput:self.videoConfiguration.enabled audioInput:self.audioConfiguration.enabled];
     
-    if (_shouldAutoresumeRecording) {
-        _shouldAutoresumeRecording = NO;
-        [self record];
+        if (_shouldAutoresumeRecording) {
+            _shouldAutoresumeRecording = NO;
+            [self record];
+        }
     }
 }
 
